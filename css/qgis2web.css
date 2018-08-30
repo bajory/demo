@@ -1,0 +1,113 @@
+.w3-row-padding{
+	margin-left: 200px;margin-right: 200px;
+}
+
+
+/*body{background-image: url('E:/University/GIS/Qgis Folder/Qgis2WEB/qgis2web_2018_08_11-09_42_43_706000/images/tower.jpg');
+     background-size: cover;
+     background-repeat: no-repeat;}*/
+
+h3{
+
+    padding-left: 3%;
+color: white;}
+#para{color: white;}
+
+#sideBar{
+
+ background-color: purple;
+ border:solid 2px black;
+ float: right ;
+ width: 20%;
+ margin-right: 0;
+ padding-right: 0;
+ height: inherit;
+ 
+
+
+}
+
+ul{
+
+    float: right;
+    
+
+}
+li{ color: white;
+    padding-left: 20px;
+    display: inline-block;
+
+}
+#Copyrights{
+}
+footer{
+
+}
+
+ html, body, #map {
+            
+            background-color: #ffffff
+          /*  width: 80%;*/
+            
+
+
+}
+th {
+    text-align: left;
+    vertical-align: top;
+}
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h2 {
+    margin: 0 0 5px;
+    color: #777;
+}
+.leaflet-container {
+    background: #fff;
+    padding-right: 10px;
+}
+.leaflet-popup-content {
+    width:auto !important;
+    padding-right:10px;
+}
+.leaflet-tooltip {
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+.leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
+    border: 0px;
+}
+
+
+/*TABLET*/
+@media (max-width:768px){
+	
+	.w3-row-padding{margin-left: auto;margin-right: auto;}
+}
+
+
+/**/
+@media (max-width:991px){
+	
+	.w3-row-padding{margin-left: auto;margin-right: auto;}
+	.responsiveImg{ margin-left: 70%; margin-top: 30%}
+}
+
+
+
+
+
+/*MOBILE*/
+@media (max-width: 600px){
+	.w3-row-padding{margin-left: auto;margin-right: auto;}
+	.respons{ margin-left: -380%; margin-top: 30%}
+	.img-responsive{width:400px;height: 400px; }
+	.copyR{padding-top: 5em}
+}
