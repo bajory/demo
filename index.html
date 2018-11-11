@@ -10,10 +10,13 @@
 <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"> -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/L.Control.Locate.min.css">
-<link rel="icon" type="image/png" href="images/dorm.png">
+<link rel="icon" type="image/png" href="images/dormicon.png">
 <link rel="stylesheet" href="css/qgis2web.css">
 <link rel="stylesheet" href="css/Control.OSMGeocoder.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/leaflet-routing-machine.css" />
+<link rel="stylesheet" href="css/leaflet-search.css">
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -22,9 +25,6 @@
 <![endif]-->
 
   <script type="text/javascript">
-function MM_swapImgRestore() { //v3.0
-  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
-}
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
     var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
@@ -38,14 +38,16 @@ function MM_findObj(n, d) { //v4.01
   for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
   if(!x && d.getElementById) x=d.getElementById(n); return x;
 }
-
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
 function MM_swapImage() { //v3.0
   var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
    if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
   </script>
 
-<body onLoad="MM_preloadImages('images/tower.jpg')">
+<body onLoad="MM_preloadImages('images/tower.jpg','images/real-dorm3.jpg')">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -56,8 +58,8 @@ function MM_swapImage() { //v3.0
       <div class="collapse navbar-collapse" id="defaultNavbar1">
         <ul class="nav navbar-nav">
                    <li class=""><a href="#map">Map</a></li>
-      <li><a href="javascript:void(0)" onclick="openCity(event, 'Paris');">Home<span class="sr-only">(current)</span></a></li>
-          <li><a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">About</a></li>
+      <li><a href="javascript:void(0)" onClick="openCity(event, 'Paris');">Home<span class="sr-only">(current)</span></a></li>
+          <li><a href="javascript:void(0)" onClick="openCity(event, 'Tokyo');">About</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -98,14 +100,14 @@ function MM_swapImage() { //v3.0
   <div class="w3-container">
     <!--<h2 style="font-family: monospace;"><strong>welcome to My DORM application</strong></h2>-->
     <div class="w3-row">
-    <a href="#map" onclick="openCity(event, 'London');">
-    <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="font-family: monospace;"><strong>Map</strong></div>
+    <a href="#map" onClick="openCity(event, 'London');">
+    <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Map</div>
     </a>
-    <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
-      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="font-family: monospace;">Home</div>
+    <a href="javascript:void(0)" onClick="openCity(event, 'Paris');">
+      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Home</div>
     </a>
-    <a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">
-      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="font-family: monospace;">Who We Are?</div>
+    <a href="javascript:void(0)" onClick="openCity(event, 'Tokyo');">
+      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Who We Are?</div>
     </a>
   </div>
 
@@ -114,139 +116,1179 @@ function MM_swapImage() { //v3.0
 
         <!--Map Starts-->
 
-     <div id="map" style="width: 90%;height: 55em;margin-top: 1em;margin-right: 2em;margin-left: 4em">
+     <div id="map" style="height: 55em;margin-top: 1em">
     </div>
         <p style="padding-top: 0.5em"> <center><b>To Our Beloved,Sincere Friend, Mohanad Abdullrahman</b><br>© 2018 Nov MyDORM ©  All Copyrights reserved</center> </p>
     <script src="js/qgis2web_expressions.js"></script>
-    <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
-    <script src="js/leaflet.rotatedMarker.js"></script>
-    <script src="js/leaflet.pattern.js"></script>
-    <script src="js/leaflet-hash.js"></script>
-    <script src="js/Autolinker.min.js"></script>
-    <script src="js/rbush.min.js"></script>
-    <script src="js/labelgun.min.js"></script>
-    <script src="js/labels.js"></script>
-    <script src="js/Control.OSMGeocoder.js"></script>
-    <script src="data/DormsShapeFile_1.js"></script>
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-<script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/Police_0.js"></script>
+        <script src="data/Schools_1.js"></script>
+        <script src="data/Resturants_2.js"></script>
+        <script src="data/Sports_3.js"></script>
+        <script src="data/Phaemacies_4.js"></script>
+        <script src="data/Parks_5.js"></script>
+        <script src="data/Mosques_6.js"></script>
+        <script src="data/Malls_7.js"></script>
+        <script src="data/Hotels_8.js"></script>
+        <script src="data/Hospitals_9.js"></script>
+        <script src="data/Goverment_10.js"></script>
+        <script src="data/Emabassies_11.js"></script>
+        <script src="data/University_12.js"></script>
+        <script src="data/Companies_13.js"></script>
+        <script src="data/Cemetery_14.js"></script>
+        <script src="data/Banks_15.js"></script>
+        <script src="data/Airport_16.js"></script>
+        <script src="data/Dorm_17.js"></script>
+        <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        })
+            zoomControl:true, maxZoom:16, minZoom:1
+        }).fitBounds([[15.4977274611,32.4399652241],[15.6259272697,32.6188092039]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
         L.control.locate().addTo(map);
         var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-            if (bounds_group.getLayers().length) {
-                map.fitBounds(bounds_group.getBounds());
-            }
-        }
-        var overlay_OpenStreetMaps_0 = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {noWrap: true,
-            opacity: 1.0
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
+            maxZoom: 16
         });
-        overlay_OpenStreetMaps_0.addTo(map);
-        map.addLayer(overlay_OpenStreetMaps_0);
-        function pop_DormsShapeFile_1(feature, layer) {
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_Police_0(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['E'] !== null ? Autolinker.link(String(feature.properties['E'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['N'] !== null ? Autolinker.link(String(feature.properties['N'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['المنطقة'] !== null ? Autolinker.link(String(feature.properties['المنطقة'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>اسم الداخلية</strong><br />' + (feature.properties['اسم_ا�'] !== null ? Autolinker.link(String(feature.properties['اسم_ا�'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['المربع'] !== null ? Autolinker.link(String(feature.properties['المربع'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">المنطقة</th>\
-                        <td>' + (feature.properties['المنط'] !== null ? Autolinker.link(String(feature.properties['المنط'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['رقم_ا'] !== null ? Autolinker.link(String(feature.properties['رقم_ا'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">الوصف</th>\
-                        <td>' + (feature.properties['الوصف'] !== null ? Autolinker.link(String(feature.properties['الوصف'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">عدد الطوابق</th>\
-                        <td>' + (feature.properties['عدد_ا�'] !== null ? Autolinker.link(String(feature.properties['عدد_ا�'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['رقم ال'] !== null ? Autolinker.link(String(feature.properties['رقم ال'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">انواع الغرف</th>\
-                        <td>' + (feature.properties['انواع'] !== null ? Autolinker.link(String(feature.properties['انواع'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['x'] !== null ? Autolinker.link(String(feature.properties['x'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">الأسعار</th>\
-                        <td>' + (feature.properties['الأسع'] !== null ? Autolinker.link(String(feature.properties['الأسع'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['y'] !== null ? Autolinker.link(String(feature.properties['y'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">الخدمات</th>\
-                        <td>' + (feature.properties['الخدم'] !== null ? Autolinker.link(String(feature.properties['الخدم'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['eng_name'] !== null ? Autolinker.link(String(feature.properties['eng_name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">المراكز الخدمية</th>\
-                        <td>' + (feature.properties['المرا'] !== null ? Autolinker.link(String(feature.properties['المرا'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Establishm'] !== null ? Autolinker.link(String(feature.properties['Establishm'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['الاحد'] !== null ? Autolinker.link(String(feature.properties['الاحد'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Field12'] !== null ? Autolinker.link(String(feature.properties['Field12'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">أقصى زمن للرجوع</th>\
-                        <td>' + (feature.properties['أقصى_�'] !== null ? Autolinker.link(String(feature.properties['أقصى_�'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>ارقام</strong><br />' + (feature.properties['ارقام'] !== null ? Autolinker.link(String(feature.properties['ارقام'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Field15'] !== null ? Autolinker.link(String(feature.properties['Field15'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['الصور'] !== null ? '<img src="images/' + String(feature.properties['الصور']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['RANGE'] !== null ? Autolinker.link(String(feature.properties['RANGE'])) : '') + '</td>\
                     </tr>\
                 </table>';
-            layer.bindPopup(popupContent, {maxHeight: 300});
+            layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_DormsShapeFile_1_0() {
+        function style_Police_0_0() {
             return {
-                pane: 'pane_DormsShapeFile_1',
+                pane: 'pane_Police_0',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/red-marker.svg',
-            iconSize: [26.6, 26.6]
+            iconUrl: 'markers/police2.svg',
+            iconSize: [38.0, 38.0]
         }),
             }
         }
-        map.createPane('pane_DormsShapeFile_1');
-        map.getPane('pane_DormsShapeFile_1').style.zIndex = 401;
-        map.getPane('pane_DormsShapeFile_1').style['mix-blend-mode'] = 'normal';
-        var layer_DormsShapeFile_1 = new L.geoJson(json_DormsShapeFile_1, {
+        map.createPane('pane_Police_0');
+        map.getPane('pane_Police_0').style.zIndex = 400;
+        map.getPane('pane_Police_0').style['mix-blend-mode'] = 'normal';
+        var layer_Police_0 = new L.geoJson(json_Police_0, {
             attribution: '<a href=""></a>',
-            pane: 'pane_DormsShapeFile_1',
-            onEachFeature: pop_DormsShapeFile_1,
+            pane: 'pane_Police_0',
+            onEachFeature: pop_Police_0,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_DormsShapeFile_1_0(feature));
+                return L.marker(latlng, style_Police_0_0(feature));
             },
         });
-        bounds_group.addLayer(layer_DormsShapeFile_1);
-        map.addLayer(layer_DormsShapeFile_1);
-        var osmGeocoder = new L.Control.OSMGeocoder({
-            collapsed: false,
-            position: 'topright',
-            text: 'Search',
+        bounds_group.addLayer(layer_Police_0);
+        map.addLayer(layer_Police_0);
+        function pop_Schools_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Date'] !== null ? Autolinker.link(String(feature.properties['Date'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['eng_name'] !== null ? Autolinker.link(String(feature.properties['eng_name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(String(feature.properties['Type'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Establish'] !== null ? Autolinker.link(String(feature.properties['Establish'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['x'] !== null ? Autolinker.link(String(feature.properties['x'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['y'] !== null ? Autolinker.link(String(feature.properties['y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['range'] !== null ? Autolinker.link(String(feature.properties['range'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Schools_1_0() {
+            return {
+                pane: 'pane_Schools_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/school.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Schools_1');
+        map.getPane('pane_Schools_1').style.zIndex = 401;
+        map.getPane('pane_Schools_1').style['mix-blend-mode'] = 'normal';
+        var layer_Schools_1 = new L.geoJson(json_Schools_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Schools_1',
+            onEachFeature: pop_Schools_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Schools_1_0(feature));
+            },
         });
-        osmGeocoder.addTo(map);
+        bounds_group.addLayer(layer_Schools_1);
+        map.addLayer(layer_Schools_1);
+        function pop_Resturants_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Resturants_2_0() {
+            return {
+                pane: 'pane_Resturants_2',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/restaurant.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Resturants_2');
+        map.getPane('pane_Resturants_2').style.zIndex = 402;
+        map.getPane('pane_Resturants_2').style['mix-blend-mode'] = 'normal';
+        var layer_Resturants_2 = new L.geoJson(json_Resturants_2, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Resturants_2',
+            onEachFeature: pop_Resturants_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Resturants_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Resturants_2);
+        map.addLayer(layer_Resturants_2);
+        function pop_Sports_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Sports_3_0() {
+            return {
+                pane: 'pane_Sports_3',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/sport.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Sports_3');
+        map.getPane('pane_Sports_3').style.zIndex = 403;
+        map.getPane('pane_Sports_3').style['mix-blend-mode'] = 'normal';
+        var layer_Sports_3 = new L.geoJson(json_Sports_3, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Sports_3',
+            onEachFeature: pop_Sports_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Sports_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Sports_3);
+        map.addLayer(layer_Sports_3);
+        function pop_Phaemacies_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['coord_E'] !== null ? Autolinker.link(String(feature.properties['coord_E'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['coord_N'] !== null ? Autolinker.link(String(feature.properties['coord_N'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Telephone_'] !== null ? Autolinker.link(String(feature.properties['Telephone_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(String(feature.properties['Type'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(String(feature.properties['ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['تأمين'] !== null ? Autolinker.link(String(feature.properties['تأمين'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['E_Name'] !== null ? Autolinker.link(String(feature.properties['E_Name'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Phaemacies_4_0() {
+            return {
+                pane: 'pane_Phaemacies_4',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/pharmacy.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Phaemacies_4');
+        map.getPane('pane_Phaemacies_4').style.zIndex = 404;
+        map.getPane('pane_Phaemacies_4').style['mix-blend-mode'] = 'normal';
+        var layer_Phaemacies_4 = new L.geoJson(json_Phaemacies_4, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Phaemacies_4',
+            onEachFeature: pop_Phaemacies_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Phaemacies_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Phaemacies_4);
+        map.addLayer(layer_Phaemacies_4);
+        function pop_Parks_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Parks_5_0() {
+            return {
+                pane: 'pane_Parks_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/park.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Parks_5');
+        map.getPane('pane_Parks_5').style.zIndex = 405;
+        map.getPane('pane_Parks_5').style['mix-blend-mode'] = 'normal';
+        var layer_Parks_5 = new L.geoJson(json_Parks_5, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Parks_5',
+            onEachFeature: pop_Parks_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Parks_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Parks_5);
+        map.addLayer(layer_Parks_5);
+        function pop_Mosques_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Mosques_6_0() {
+            return {
+                pane: 'pane_Mosques_6',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/mosque.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Mosques_6');
+        map.getPane('pane_Mosques_6').style.zIndex = 406;
+        map.getPane('pane_Mosques_6').style['mix-blend-mode'] = 'normal';
+        var layer_Mosques_6 = new L.geoJson(json_Mosques_6, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Mosques_6',
+            onEachFeature: pop_Mosques_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Mosques_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Mosques_6);
+        map.addLayer(layer_Mosques_6);
+        function pop_Malls_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Malls_7_0() {
+            return {
+                pane: 'pane_Malls_7',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/mall.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Malls_7');
+        map.getPane('pane_Malls_7').style.zIndex = 407;
+        map.getPane('pane_Malls_7').style['mix-blend-mode'] = 'normal';
+        var layer_Malls_7 = new L.geoJson(json_Malls_7, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Malls_7',
+            onEachFeature: pop_Malls_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Malls_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Malls_7);
+        map.addLayer(layer_Malls_7);
+        function pop_Hotels_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Hotels_8_0() {
+            return {
+                pane: 'pane_Hotels_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/hotel.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Hotels_8');
+        map.getPane('pane_Hotels_8').style.zIndex = 408;
+        map.getPane('pane_Hotels_8').style['mix-blend-mode'] = 'normal';
+        var layer_Hotels_8 = new L.geoJson(json_Hotels_8, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Hotels_8',
+            onEachFeature: pop_Hotels_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Hotels_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Hotels_8);
+        map.addLayer(layer_Hotels_8);
+        function pop_Hospitals_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Hospitals_9_0() {
+            return {
+                pane: 'pane_Hospitals_9',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/hospital.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Hospitals_9');
+        map.getPane('pane_Hospitals_9').style.zIndex = 409;
+        map.getPane('pane_Hospitals_9').style['mix-blend-mode'] = 'normal';
+        var layer_Hospitals_9 = new L.geoJson(json_Hospitals_9, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Hospitals_9',
+            onEachFeature: pop_Hospitals_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Hospitals_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Hospitals_9);
+        map.addLayer(layer_Hospitals_9);
+        function pop_Goverment_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Goverment_10_0() {
+            return {
+                pane: 'pane_Goverment_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/government.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Goverment_10');
+        map.getPane('pane_Goverment_10').style.zIndex = 410;
+        map.getPane('pane_Goverment_10').style['mix-blend-mode'] = 'normal';
+        var layer_Goverment_10 = new L.geoJson(json_Goverment_10, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Goverment_10',
+            onEachFeature: pop_Goverment_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Goverment_10_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Goverment_10);
+        map.addLayer(layer_Goverment_10);
+        function pop_Emabassies_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Emabassies_11_0() {
+            return {
+                pane: 'pane_Emabassies_11',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/embassy.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Emabassies_11');
+        map.getPane('pane_Emabassies_11').style.zIndex = 411;
+        map.getPane('pane_Emabassies_11').style['mix-blend-mode'] = 'normal';
+        var layer_Emabassies_11 = new L.geoJson(json_Emabassies_11, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Emabassies_11',
+            onEachFeature: pop_Emabassies_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Emabassies_11_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Emabassies_11);
+        map.addLayer(layer_Emabassies_11);
+        function pop_University_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_University_12_0() {
+            return {
+                pane: 'pane_University_12',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/college.svg',
+            iconSize: [50, 50]
+        }),
+            }
+        }
+        map.createPane('pane_University_12');
+        map.getPane('pane_University_12').style.zIndex = 412;
+        map.getPane('pane_University_12').style['mix-blend-mode'] = 'normal';
+        var layer_University_12 = new L.geoJson(json_University_12, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_University_12',
+            onEachFeature: pop_University_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_University_12_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_University_12);
+        map.addLayer(layer_University_12);
+        function pop_Companies_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Companies_13_0() {
+            return {
+                pane: 'pane_Companies_13',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/company.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Companies_13');
+        map.getPane('pane_Companies_13').style.zIndex = 413;
+        map.getPane('pane_Companies_13').style['mix-blend-mode'] = 'normal';
+        var layer_Companies_13 = new L.geoJson(json_Companies_13, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Companies_13',
+            onEachFeature: pop_Companies_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Companies_13_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Companies_13);
+        map.addLayer(layer_Companies_13);
+        function pop_Cemetery_14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Cemetery_14_0() {
+            return {
+                pane: 'pane_Cemetery_14',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/cemetry.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Cemetery_14');
+        map.getPane('pane_Cemetery_14').style.zIndex = 414;
+        map.getPane('pane_Cemetery_14').style['mix-blend-mode'] = 'normal';
+        var layer_Cemetery_14 = new L.geoJson(json_Cemetery_14, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Cemetery_14',
+            onEachFeature: pop_Cemetery_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Cemetery_14_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Cemetery_14);
+        map.addLayer(layer_Cemetery_14);
+        function pop_Banks_15(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? Autolinker.link(String(feature.properties['LAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? Autolinker.link(String(feature.properties['LONG'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Banks_15_0() {
+            return {
+                pane: 'pane_Banks_15',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/bank.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Banks_15');
+        map.getPane('pane_Banks_15').style.zIndex = 415;
+        map.getPane('pane_Banks_15').style['mix-blend-mode'] = 'normal';
+        var layer_Banks_15 = new L.geoJson(json_Banks_15, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Banks_15',
+            onEachFeature: pop_Banks_15,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Banks_15_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Banks_15);
+        map.addLayer(layer_Banks_15);
+        function pop_Airport_16(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT'] !== null ? Autolinker.link(String(feature.properties['POINT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>discrip</strong><br />' + (feature.properties['discrip'] !== null ? Autolinker.link(String(feature.properties['discrip'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Airport_16_0() {
+            return {
+                pane: 'pane_Airport_16',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/airport.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Airport_16');
+        map.getPane('pane_Airport_16').style.zIndex = 416;
+        map.getPane('pane_Airport_16').style['mix-blend-mode'] = 'normal';
+        var layer_Airport_16 = new L.geoJson(json_Airport_16, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Airport_16',
+            onEachFeature: pop_Airport_16,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Airport_16_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Airport_16);
+        map.addLayer(layer_Airport_16);
+        function pop_Dorm_17(feature, layer) {
+            var popupContent = '<table>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>اسم الداخلية</strong><br />' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>المنطقة</strong><br />' + (feature.properties['المنطقة'] !== null ? Autolinker.link(String(feature.properties['المنطقة'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الوصف</strong><br />' + (feature.properties['الوصف'] !== null ? Autolinker.link(String(feature.properties['الوصف'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>عدد الطوابق</strong><br />' + (feature.properties['عدد الطوابق'] !== null ? Autolinker.link(String(feature.properties['عدد الطوابق'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الخدمات</strong><br />' + (feature.properties['الخدمات'] !== null ? Autolinker.link(String(feature.properties['الخدمات'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الخدمات المجاورة</strong><br />' + (feature.properties['الخدمات المجاورة'] !== null ? Autolinker.link(String(feature.properties['الخدمات المجاورة'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>زمن العودة</strong><br />' + (feature.properties['زمن العودة'] !== null ? Autolinker.link(String(feature.properties['زمن العودة'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>أرقام الإشراف</strong><br />' + (feature.properties['أرقام الإشراف'] !== null ? Autolinker.link(String(feature.properties['أرقام الإشراف'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>النوع</strong><br />' + (feature.properties['النوع'] !== null ? Autolinker.link(String(feature.properties['النوع'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الأحادية</strong><br />' + (feature.properties['الأحادية'] !== null ? Autolinker.link(String(feature.properties['الأحادية'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الثنائية</strong><br />' + (feature.properties['الثنائية'] !== null ? Autolinker.link(String(feature.properties['الثنائية'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الثلاثية</strong><br />' + (feature.properties['الثلاثية'] !== null ? Autolinker.link(String(feature.properties['الثلاثية'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الرباعية</strong><br />' + (feature.properties['الرباعية'] !== null ? Autolinker.link(String(feature.properties['الرباعية'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>الخماسية</strong><br />' + (feature.properties['الخماسية'] !== null ? Autolinker.link(String(feature.properties['الخماسية'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>السداسية</strong><br />' + (feature.properties['السداسية'] !== null ? Autolinker.link(String(feature.properties['السداسية'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Dorm_17_0() {
+            return {
+                pane: 'pane_Dorm_17',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/dormy.svg',
+            iconSize: [65, 65]
+        }),
+            }
+        }
+        map.createPane('pane_Dorm_17');
+        map.getPane('pane_Dorm_17').style.zIndex = 417;
+        map.getPane('pane_Dorm_17').style['mix-blend-mode'] = 'normal';
+        var layer_Dorm_17 = new L.geoJson(json_Dorm_17, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Dorm_17',
+            onEachFeature: pop_Dorm_17,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Dorm_17_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Dorm_17);
+        map.addLayer(layer_Dorm_17);
+        map.on("zoomend", function(e) {
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Police_0);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Police_0);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Schools_1);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Schools_1);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Resturants_2);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Resturants_2);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 13) {
+                map.addLayer(layer_Sports_3);
+            } else if (map.getZoom() > 19 || map.getZoom() < 13) {
+                map.removeLayer(layer_Sports_3);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Phaemacies_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Phaemacies_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Parks_5);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Parks_5);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Mosques_6);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Mosques_6);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 13) {
+                map.addLayer(layer_Malls_7);
+            } else if (map.getZoom() > 19 || map.getZoom() < 13) {
+                map.removeLayer(layer_Malls_7);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Hotels_8);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Hotels_8);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Hospitals_9);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Hospitals_9);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Goverment_10);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Goverment_10);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Emabassies_11);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Emabassies_11);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Companies_13);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Companies_13);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Cemetery_14);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Cemetery_14);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Banks_15);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Banks_15);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 12) {
+                map.addLayer(layer_Airport_16);
+            } else if (map.getZoom() > 19 || map.getZoom() < 12) {
+                map.removeLayer(layer_Airport_16);
+            }
+        });
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Police_0);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Police_0);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Schools_1);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Schools_1);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Resturants_2);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Resturants_2);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 13) {
+                map.addLayer(layer_Sports_3);
+            } else if (map.getZoom() > 19 || map.getZoom() < 13) {
+                map.removeLayer(layer_Sports_3);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Phaemacies_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Phaemacies_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Parks_5);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Parks_5);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Mosques_6);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Mosques_6);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 13) {
+                map.addLayer(layer_Malls_7);
+            } else if (map.getZoom() > 19 || map.getZoom() < 13) {
+                map.removeLayer(layer_Malls_7);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Hotels_8);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Hotels_8);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Hospitals_9);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Hospitals_9);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
+                map.addLayer(layer_Goverment_10);
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
+                map.removeLayer(layer_Goverment_10);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Emabassies_11);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Emabassies_11);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Companies_13);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Companies_13);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Cemetery_14);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Cemetery_14);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_Banks_15);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_Banks_15);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 12) {
+                map.addLayer(layer_Airport_16);
+            } else if (map.getZoom() > 19 || map.getZoom() < 12) {
+                map.removeLayer(layer_Airport_16);
+            }
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/DormsShapeFile_1.png" /> DormsShapeFile': layer_DormsShapeFile_1,"OpenStreetMaps": overlay_OpenStreetMaps_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Dorm_17.png" /> Dorm': layer_Dorm_17,'<img src="legend/Airport_16.png" /> Airport': layer_Airport_16,'<img src="legend/Banks_15.png" /> Banks': layer_Banks_15,'<img src="legend/Cemetery_14.png" /> Cemetery': layer_Cemetery_14,'<img src="legend/Companies_13.png" /> Companies': layer_Companies_13,'<img src="legend/University_12.png" /> University': layer_University_12,'<img src="legend/Emabassies_11.png" /> Emabassies': layer_Emabassies_11,'<img src="legend/Goverment_10.png" /> Goverment': layer_Goverment_10,'<img src="legend/Hospitals_9.png" /> Hospitals': layer_Hospitals_9,'<img src="legend/Hotels_8.png" /> Hotels': layer_Hotels_8,'<img src="legend/Malls_7.png" /> Malls': layer_Malls_7,'<img src="legend/Mosques_6.png" /> Mosques': layer_Mosques_6,'<img src="legend/Parks_5.png" /> Parks': layer_Parks_5,'<img src="legend/Phaemacies_4.png" /> Phaemacies': layer_Phaemacies_4,'<img src="legend/Sports_3.png" /> Sports': layer_Sports_3,'<img src="legend/Resturants_2.png" /> Resturants': layer_Resturants_2,'<img src="legend/Schools_1.png" /> Schools': layer_Schools_1,'<img src="legend/Police_0.png" /> Police': layer_Police_0,}).addTo(map);
         setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_Dorm_17,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Name'}));
+
+        L.Routing.control({
+  waypoints: [
+    L.latLng(15.560423, 32.539448),
+    L.latLng(15.534393, 32.565851)
+  ]
+}).addTo(map);
+	
         </script>
     
   </div>
@@ -254,9 +1296,9 @@ function MM_swapImage() { //v3.0
   <div id="Paris" class="w3-container city" style="display: none;font-family: monospace;">
    <h2 style="font-family: monospace;"><strong>My Dorm</strong></h2>
     <p>It's a Simple Application Used For Geolocating And Searching For Dormtories And boarding schools in Khartoum.</p>
-    <div class="respons"> <img src="images/dorm.png" alt="my dorm" class="img-responsive" style="width: 10em; height: 10em; margin-left: 86%; margin-top: -4%"></div>
+    <div class="respons"> <img src="images/dormicon.png" alt="my dorm" class="img-responsive" style="width: 10em; height: 10em; margin-left: 86%; margin-top: -4%"></div>
 	  <div>
-       </div>
+       <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','images/real-dorm3.jpg',1)"><img src="images/real-dorm.jpg" alt="" width="2160" height="800" id="Image5"></a> </div>
 	  
     <p class="copyR" style="padding-top: 23em"> <center> <b>To Our Beloved,Sincere Friend, Mohanad Abdullrahman</b><br>© 2018 Nov MyDORM ©  All Copyrights reserved</center> </p> 
   </div>
@@ -272,9 +1314,9 @@ function MM_swapImage() { //v3.0
       <div class="w3-card-4">
         <img src="images/baj.JPG" alt="bajory" style="width:100%">
         <div class="w3-container">
-          <h3>Ibrahim Bajory</h3>
-          <p class="w3-opacity">Engineer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <h3 style="color: purple">Ibrahim Bajory</h3>
+          <p class="w3-opacity">Engineering Student</p>
+          <p><center>GiS</center></p>
           <p><button class="w3-button w3-purple w3-block">Contact</button></p>
         </div>
       </div>
@@ -284,9 +1326,9 @@ function MM_swapImage() { //v3.0
       <div class="w3-card-4">
         <img src="images/doha.JPG" alt="Doha Ahmed" style="width:100%">
         <div class="w3-container">
-          <h3>Doha Ahmed</h3>
-          <p class="w3-opacity">Engineer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <h3 style="color: purple">Doha Ahmed</h3>
+          <p class="w3-opacity">Engineering Student</p>
+          <p><center>RS</center></p>
           <p><button class="w3-button w3-purple w3-block">Contact</button></p>
         </div>
       </div>
@@ -296,9 +1338,9 @@ function MM_swapImage() { //v3.0
       <div class="w3-card-4">
         <img src="images/hano.JPG" alt="Mohanad Abdullrahman" style="width:100%">
         <div class="w3-container">
-          <h3>Mohanad Abdullrahman</h3>
-          <p class="w3-opacity">Engineer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <h4 style="color: purple">Mohanad Abdullrahman</h4>
+          <p class="w3-opacity">Engineering Student</p>
+          <p><center>GiS</center></p>
           <p><button class="w3-button w3-purple w3-block">Pray For Him</button></p>
         </div>
       </div>

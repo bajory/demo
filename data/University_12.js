@@ -1,0 +1,30 @@
+var json_University_12 = {
+"type": "FeatureCollection",
+"name": "University_12",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OBJECTID": "6", "POINT": "6", "NAME": "Sudan Open University (center alkhartoum)", "LAT": 15.556723, "LONG": 32.536452 }, "geometry": { "type": "Point", "coordinates": [ 32.53645200016652, 15.556722999879694 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "7", "POINT": "7", "NAME": "Sudan University for Sciense and Technology Collage of Engineer", "LAT": 15.560976, "LONG": 32.540795 }, "geometry": { "type": "Point", "coordinates": [ 32.54079499963543, 15.56097599995004 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "26", "POINT": "26", "NAME": "Vocational training center in Khartoum", "LAT": 15.586306, "LONG": 32.545748 }, "geometry": { "type": "Point", "coordinates": [ 32.545748000039509, 15.586306000240468 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "63", "POINT": "63", "NAME": "University of Khartoum Central Campus", "LAT": 15.60937, "LONG": 32.541712 }, "geometry": { "type": "Point", "coordinates": [ 32.541712000347282, 15.609370000227905 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "64", "POINT": "64", "NAME": "Sudanese Media Center", "LAT": 15.60659, "LONG": 32.536091 }, "geometry": { "type": "Point", "coordinates": [ 32.536090999866225, 15.606589999651154 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "66", "POINT": "66", "NAME": "University of Khartoum", "LAT": 15.611462, "LONG": 32.539984 }, "geometry": { "type": "Point", "coordinates": [ 32.539983999582908, 15.611461999684407 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "67", "POINT": "67", "NAME": "Sudanese Research and Education", "LAT": 15.610955, "LONG": 32.538686 }, "geometry": { "type": "Point", "coordinates": [ 32.538685999927871, 15.610954999705815 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "71", "POINT": "71", "NAME": "Alneelain University Collage of Marketing", "LAT": 15.600536, "LONG": 32.514858 }, "geometry": { "type": "Point", "coordinates": [ 32.51485799953609, 15.60053599980697 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "97", "POINT": "97", "NAME": "Sudan Open University", "LAT": 15.564988, "LONG": 32.562587 }, "geometry": { "type": "Point", "coordinates": [ 32.562587000377157, 15.564988000404085 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "105", "POINT": "105", "NAME": "Emirates Collage of Technololgy", "LAT": 15.551433, "LONG": 32.590428 }, "geometry": { "type": "Point", "coordinates": [ 32.590428000296754, 15.551433000084435 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "108", "POINT": "108", "NAME": "Khartoum International Community School", "LAT": 15.533489, "LONG": 32.584924 }, "geometry": { "type": "Point", "coordinates": [ 32.58492399999701, 15.53348900032992 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "109", "POINT": "109", "NAME": "National University", "LAT": 15.526005, "LONG": 32.58898 }, "geometry": { "type": "Point", "coordinates": [ 32.588979999606572, 15.526005000137326 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "112", "POINT": "112", "NAME": "Khartoum Collage of Medical Sciences", "LAT": 15.588147, "LONG": 32.575851 }, "geometry": { "type": "Point", "coordinates": [ 32.57585099962472, 15.588146999809725 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "113", "POINT": "113", "NAME": "Faculty of Medicine", "LAT": 15.613485, "LONG": 32.558649 }, "geometry": { "type": "Point", "coordinates": [ 32.558648999670723, 15.613484999875112 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "114", "POINT": "114", "NAME": "Al-ribat University Hospital", "LAT": 15.611604, "LONG": 32.558842 }, "geometry": { "type": "Point", "coordinates": [ 32.558841999961558, 15.611604000048557 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "115", "POINT": "115", "NAME": "Al-ribat University", "LAT": 15.563025, "LONG": 32.562523 }, "geometry": { "type": "Point", "coordinates": [ 32.562523000371243, 15.563024999711986 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "138", "POINT": "138", "NAME": "AlNeelain University Collage of Engineer", "LAT": 15.603246, "LONG": 32.50968 }, "geometry": { "type": "Point", "coordinates": [ 32.5096799996088, 15.603245999857753 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "139", "POINT": "139", "NAME": "Alyarmouk Faculty of Medical Science", "LAT": 15.546593, "LONG": 32.581294 }, "geometry": { "type": "Point", "coordinates": [ 32.581294000363513, 15.546593000422051 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "140", "POINT": "140", "NAME": "International University of Africa", "LAT": 15.530551, "LONG": 32567411.0 }, "geometry": null },
+{ "type": "Feature", "properties": { "OBJECTID": "5", "POINT": "5", "NAME": "University of Bahri", "LAT": 15.565573, "LONG": 32.543647 }, "geometry": { "type": "Point", "coordinates": [ 32.5436469996014, 15.565573000270188 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "41", "POINT": "41", "NAME": "Collage of Medicine_University Bahri", "LAT": 15.583542, "LONG": 32.52859 }, "geometry": { "type": "Point", "coordinates": [ 32.528590000066878, 15.583542000229345 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "144", "POINT": "145", "NAME": "AlNeelain University", "LAT": 15.602578, "LONG": 32.51457 }, "geometry": { "type": "Point", "coordinates": [ 32.514569999650753, 15.602577999841802 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": "151", "POINT": "152", "NAME": "Khartoum Faculty of Applied", "LAT": 15.561773, "LONG": 32.574518 }, "geometry": { "type": "Point", "coordinates": [ 32.574517999688325, 15.561773000422056 ] } }
+]
+}
